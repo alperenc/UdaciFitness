@@ -1,3 +1,12 @@
+import React from 'react';
+import { View } from 'react-native';
+import {
+  FontAwesome,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
+import { white } from './colors';
+
 export const getMetricMetaInfo = metric => {
   const info = {
     run: {
