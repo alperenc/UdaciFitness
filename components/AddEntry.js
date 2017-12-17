@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { getMetricMetaInfo } from '../utils/helpers';
+import { View, TouchableHighlight, Text } from 'react-native';
+import { getMetricMetaInfo, timeToString } from '../utils/helpers';
 import Slider from './Slider';
 import Steppers from './Steppers';
 import DateHeader from './DateHeader';
+
+const SubmitButton = ({ onPress }) => {
+  return (
+    <TouchableHighlight onPress={onPress} underlayColor="#0f0">
+      <Text>Submit</Text>
+    </TouchableHighlight>
+  );
+};
 
 export default class AddEntry extends Component {
   state = {
@@ -41,12 +49,34 @@ export default class AddEntry extends Component {
       [metric]: value,
     }));
   };
+
+  submit = () => {
+    const key = timeToString();
+    const entry = this.state;
+
+    // Update Redux
+
+    this.setState(() => ({
+      run: 0,
+      bike: 0,
+      swim: 0,
+      sleep: 0,
+      eat: 0,
+    }));
+
+    // Navigate to home
+
+    // Save to db
+
+    // Clear local notification
+  };
+
   render() {
     const metaInfo = getMetricMetaInfo();
 
     return (
       <View>
-        <DateHeader date={(new Date()).toLocaleDateString()} />
+        <DateHeader date={new Date().toLocaleDateString()} />
         {Object.keys(metaInfo).map(key => {
           const { getIcon, type, ...rest } = metaInfo[key];
           const value = this.state[key];
@@ -71,6 +101,7 @@ export default class AddEntry extends Component {
             </View>
           );
         })}
+        <SubmitButton onPress={this.submit} />
       </View>
     );
   }
