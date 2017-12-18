@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableHighlight, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { getMetricMetaInfo, timeToString } from '../utils/helpers';
+import { submitEntry, removeEntry } from '../utils/api';
 import UdaciSlider from './UdaciSlider';
 import Steppers from './Steppers';
 import DateHeader from './DateHeader';
@@ -56,7 +57,7 @@ export default class AddEntry extends Component {
     const key = timeToString();
     const entry = this.state;
 
-    // Update Redux
+    // TODO: Update Redux
 
     this.setState(() => ({
       run: 0,
@@ -66,17 +67,23 @@ export default class AddEntry extends Component {
       eat: 0,
     }));
 
-    // Navigate to home
+    // TODO: Navigate to home
 
     // Save to db
+    submitEntry({ key, entry })
 
     // Clear local notification
   };
 
   reset = () => {
+    const key = timeToString();
+
     // TODO: Update Redux
+
     // TODO: Navigate to home
-    // TODO: Update db
+
+    // Update db
+    removeEntry(key)
   };
 
   render() {
