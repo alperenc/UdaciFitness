@@ -8,6 +8,7 @@ const entries = (state = {}, action) => {
         ...action.entries,
       };
       break;
+
     case ADD_ENTRY:
       return {
         ...state,
@@ -16,6 +17,7 @@ const entries = (state = {}, action) => {
       break;
 
     default:
+      return state;
       break;
   }
 };
