@@ -13,6 +13,7 @@ import { timeToString, getDailyReminderValue } from '../utils/helpers';
 import { fetchCalendarResults } from '../utils/api';
 import { white } from '../utils/colors';
 import DateHeader from './DateHeader';
+import MetricCard from './MetricCard';
 
 class History extends Component {
   componentDidMount() {
@@ -40,7 +41,7 @@ class History extends Component {
         </View>
       ) : (
         <TouchableOpacity onPress={() => console.log.apply('Pressed')}>
-          <Text>{JSON.stringify(metrics)}</Text>
+          <MetricCard metrics={metrics} date={formattedDate} />
         </TouchableOpacity>
       )}
     </View>
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingTop: 20,
     paddingBottom: 20,
-  }
+  },
 });
 
 const mapStateToProps = entries => {
