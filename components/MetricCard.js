@@ -17,7 +17,7 @@ const MetricCard = ({ date, metrics }) => {
         } = getMetricMetaInfo(metric);
 
         return (
-          <View style={styles.metric}>
+          <View key={metric} style={styles.metric}>
             {getIcon()}
             <View>
               <Text style={{ fontSize: 20 }}>{displayName}</Text>
