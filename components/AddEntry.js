@@ -7,20 +7,22 @@ import {
   StyleSheet,
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import {
-  getMetricMetaInfo,
-  getDailyReminderValue,
-  timeToString,
-} from '../utils/helpers';
-import { submitEntry, removeEntry } from '../utils/api';
-import { white, purple } from '../utils/colors';
-import { addEntry } from '../actions';
+import { Ionicons } from '@expo/vector-icons';
 import UdaciSlider from './UdaciSlider';
 import Steppers from './Steppers';
 import DateHeader from './DateHeader';
 import TextButton from './TextButton';
+import { addEntry } from '../actions';
+import { white, purple } from '../utils/colors';
+import { submitEntry, removeEntry } from '../utils/api';
+import {
+  getMetricMetaInfo,
+  getDailyReminderValue,
+  timeToString,
+  clearLocalNotifications,
+  setLocalNotification,
+} from '../utils/helpers';
 
 const SubmitButton = ({ onPress }) => {
   return (
@@ -101,6 +103,7 @@ class AddEntry extends Component {
     submitEntry({ key, entry });
 
     // Clear local notification
+    clearLocalNotifications().then(setLocalNotification);
   };
 
   reset = () => {
@@ -121,10 +124,12 @@ class AddEntry extends Component {
   };
 
   toHome = () => {
-    this.props.navigation.dispatch(NavigationActions.back({
-      key: 'AddEntry'
-    }))
-  }
+    this.props.navigation.dispatch(
+      NavigationActions.back({
+        key: 'AddEntry',
+      })
+    );
+  };
 
   render() {
     const metaInfo = getMetricMetaInfo();

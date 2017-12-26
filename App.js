@@ -11,6 +11,7 @@ import EntryDetail from './components/EntryDetail';
 import Live from './components/Live';
 import { purple, white } from './utils/colors';
 import reducer from './reducers';
+import { setLocalNotification } from './utils/helpers';
 
 const UdaciStatusBar = ({ backgroundColor, ...props }) => (
   <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
@@ -45,7 +46,7 @@ const Tabs = TabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <Ionicons name="ios-speedometer" size={30} color={tintColor} />
         ),
-      }
+      },
     },
   },
   {
@@ -85,6 +86,9 @@ const MainNavigator = StackNavigator({
 });
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>
