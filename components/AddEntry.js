@@ -6,6 +6,7 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import {
@@ -93,7 +94,8 @@ class AddEntry extends Component {
       eat: 0,
     }));
 
-    // TODO: Navigate to home
+    // Navigate to home
+    this.toHome();
 
     // Save to db
     submitEntry({ key, entry });
@@ -111,11 +113,18 @@ class AddEntry extends Component {
       })
     );
 
-    // TODO: Navigate to home
+    // Navigate to home
+    this.toHome();
 
     // Update db
     removeEntry(key);
   };
+
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationActions.back({
+      key: 'AddEntry'
+    }))
+  }
 
   render() {
     const metaInfo = getMetricMetaInfo();
