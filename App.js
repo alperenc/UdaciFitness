@@ -31,7 +31,7 @@ const Tabs = TabNavigator(
     AddEntry: {
       screen: AddEntry,
       navigationOptions: {
-        tabBarLabel: 'AddEntry',
+        tabBarLabel: 'Add Entry',
         tabBarIcon: ({ tintColor }) => (
           <FontAwesome name="plus-square" size={30} color={tintColor} />
         ),

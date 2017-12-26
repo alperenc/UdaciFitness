@@ -136,7 +136,7 @@ class AddEntry extends Component {
             name={Platform.OS === 'ios' ? 'ios-happy-outline' : 'md-happy'}
             size={100}
           />
-          <Text>You already logged your information for today</Text>
+          <Text>You already logged your information for today.</Text>
           <TextButton style={{ padding: 10 }} onPress={this.reset}>
             Reset
           </TextButton>
