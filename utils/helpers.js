@@ -166,7 +166,7 @@ const createNotification = () => {
     },
     android: {
       sound: true,
-      priority: high,
+      priority: 'high',
       sticky: false,
       vibrate: true,
     },
